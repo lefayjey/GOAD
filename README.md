@@ -6,7 +6,7 @@
 ## Snaplabs Edition (by lefayjey)
 
 Latest template is available here:
-[GOADv2 - SnapLabs v1.4 - 11.2023](https://dashboard.snaplabs.io/templates/6968d65d-5f07-45ee-aad3-b293ccccf908)
+[GOADv2 - SnapLabs v1.5 - 06.2024](https://dashboard.snaplabs.io/templates/9207f507-883c-4e2b-a047-f0047dc0084d)
 
 CHANGELOG: Update to latest version of GOADv2, add ELK server
 
