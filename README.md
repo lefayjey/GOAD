@@ -3,6 +3,13 @@
   <br>
 </div>
 
+## Snaplabs Edition (by lefayjey)
+
+Latest template is available here:
+[GOADv2 - SnapLabs v1.4 - 11.2023](https://dashboard.snaplabs.io/templates/6968d65d-5f07-45ee-aad3-b293ccccf908)
+
+CHANGELOG: Update to latest version of GOADv2, add ELK server
+
 ## Description
 GOAD is a pentest active directory LAB project.
 The purpose of this lab is to give pentesters a vulnerable Active directory environment ready to use to practice usual attack techniques.

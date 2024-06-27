@@ -9,7 +9,7 @@ LAB=
 PROVIDER=
 METHOD=
 JOB=
-PROVIDERS="virtualbox vmware azure proxmox"
+PROVIDERS="virtualbox vmware azure proxmox snaplabs"
 LABS=$(ls -A ad/ |grep -v 'TEMPLATE')
 TASKS="check install start stop status restart destroy disablevagrant enablevagrant"
 ANSIBLE_PLAYBOOKS="edr.yml build.yml ad-servers.yml ad-parent_domain.yml ad-child_domain.yml ad-members.yml ad-trusts.yml ad-data.yml ad-gmsa.yml laps.yml ad-relations.yml adcs.yml ad-acl.yml servers.yml security.yml vulnerabilities.yml reboot.yml elk.yml sccm-install.yml sccm-config.yml"
@@ -235,6 +235,9 @@ install_providing(){
         exit 1
       fi
       ;;
+      "snaplabs")
+      echo "${OK} Skipping installation of provider (to be done manually)..."
+      ;;
   esac
 }
 
@@ -243,7 +246,7 @@ install_provisioning(){
   provider=$2
   method=$3
   case $provider in
-    "virtualbox"|"vmware"|"proxmox")
+    "virtualbox"|"vmware"|"proxmox"|"snaplabs")
         case $method in
           "local")
               if [ -z $ANSIBLE_PLAYBOOK ]; then
@@ -358,8 +361,8 @@ disablevagrant(){
             ;;
         esac
       ;;
-    "azure")
-          echo "Vagrant user not used in azure, skip."
+    "azure"|"snaplabs")
+          echo "Vagrant user not used in azure / snaplabs, skip."
       ;;
   esac
 }
@@ -394,8 +397,8 @@ enablevagrant(){
             ;;
         esac
       ;;
-    "azure")
-          echo "Vagrant user not used in azure, skip."
+    "azure"|"snaplabs")
+          echo "Vagrant user not used in azure / snaplabs, skip."
       ;;
   esac
 }
@@ -454,6 +457,9 @@ start(){
       az vm start --ids $(az vm list --resource-group $LAB --query "[].id" -o tsv)
       status
       ;;
+    "snaplabs")
+      echo "TODO"
+      ;;
   esac
 }
 
@@ -488,6 +494,9 @@ stop(){
     "azure")
       az vm stop --ids $(az vm list --resource-group $LAB --query "[].id" -o tsv)
       status
+      ;;
+    "snaplabs")
+      echo "TODO"
       ;;
   esac
 }
@@ -526,6 +535,9 @@ restart(){
       az vm restart --ids $(az vm list --resource-group $LAB --query "[].id" -o tsv)
       status
       ;;
+    "snaplabs")
+      echo "TODO"
+      ;;
   esac
 }
 
@@ -554,6 +566,9 @@ destroy(){
         echo "${ERROR} folder ad/$LAB/providers/$PROVIDER/terraform not found"
         exit 1
       fi
+      ;;
+    "snaplabs")
+      echo "TODO"
       ;;
   esac
 }
@@ -584,6 +599,9 @@ status(){
       ;;
     "azure")
       az vm list -g $LAB -d --output table
+      ;;
+    "snaplabs")
+      echo "TODO"
       ;;
   esac
 }
